@@ -1,61 +1,31 @@
 const fs = require('fs');
 const path = require('path');
+const { startTracking, endTracking } = require('./performanceTracker');
 
-const inputDir = path.join(__dirname, '/sample_input_for_students/');
-const outputDir = path.join(__dirname, '/results_for_sample_inputs/');
+function sortUniqueIntegers(inputFilePath) {
+    const directory = 'sorted_sample';
+    const baseName = path.basename(inputFilePath, path.extname(inputFilePath)) + '_result.txt';
+    const outputFilePath = path.join(directory, baseName);
 
-// Ensure the output directory exists
-if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-}
+    const trackingData = startTracking();  // Start tracking
 
-// Read and process each file in the input directory
-fs.readdir(inputDir, (err, files) => {
-    if (err) {
-        console.error("Failed to list directory", err);
-        return;
-    }
-    
-    files.forEach(file => {
-        if (file.endsWith('.txt')) {
-            const filePath = path.join(inputDir, file);
-            processFile(filePath, file);
-        }
-    });
-});
-
-function processFile(filePath, fileName) {
-    fs.readFile(filePath, 'utf8', (err, data) => {
+    fs.readFile(inputFilePath, 'utf8', (err, data) => {
         if (err) {
-            console.error(`Failed to read file: ${filePath}`, err);
+            console.error('Error reading file:', err);
             return;
         }
-        
-        const lines = data.split(/\r?\n/);
-        const uniqueIntegers = new Set();
-        
-        lines.forEach(line => {
-            line = line.trim();
-            if (line && !isNaN(line) && parseInt(line) === parseFloat(line)) {
-                uniqueIntegers.add(parseInt(line));
+
+        const numbers = new Set(data.split(/\r?\n/).map(line => parseInt(line, 10)).filter(num => !isNaN(num)));
+        const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
+
+        fs.writeFile(outputFilePath, sortedNumbers.join('\n') + '\n', (err) => {
+            if (err) {
+                console.error('Error writing file:', err);
             }
+            endTracking(trackingData);  // End tracking
         });
-        
-        const sortedIntegers = Array.from(uniqueIntegers).sort((a, b) => a - b);
-        writeResults(sortedIntegers, fileName);
     });
 }
 
-function writeResults(integers, fileName) {
-    const outputPath = path.join(outputDir, fileName.replace('.txt', '_results.txt'));
-    const data = integers.join('\n');
-    
-    fs.writeFile(outputPath, data, 'utf8', (err) => {
-        if (err) {
-            console.error(`Failed to write to file: ${outputPath}`, err);
-            return;
-        }
-        console.log(`Results written to ${outputPath}`);
-        console.log(outputPath);
-    });
-}
+// Example usage for a sample file
+sortUniqueIntegers('sample_input_for_students/small_sample_input_01.txt');
