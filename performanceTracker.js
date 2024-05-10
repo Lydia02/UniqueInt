@@ -1,5 +1,3 @@
-// SimplePerformanceTracker.js
-
 function startTracking() {
     const startTime = Date.now();  // Get current time in milliseconds
     return { startTime };  // Return the start time
