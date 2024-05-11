@@ -1,10 +1,7 @@
-Here's a revised version of the `README.md` for your project, including a table of contents, use of images to enhance the document visually, and added a section for the contributor with a placeholder for the GitHub link. This should make the document more navigable and visually appealing.
-
-````markdown
+```markdown
 # Unique Integer Processor
 
 ## Table of Contents
-
 - [Overview](#overview)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
@@ -32,7 +29,6 @@ The Unique Integer Processor is a Node.js application that reads input files con
 ## Prerequisites
 
 Ensure you have the following before starting:
-
 - Node.js (version 12.x or higher)
 
 ## Installation
@@ -43,7 +39,6 @@ Clone the repository:
 git clone https://github.com/Lydia02/UniqueInt.git
 cd UniqueInt
 ```
-````
 
 ## Usage
 
@@ -84,7 +79,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 If you use the `diff` command as described in the README to compare the results, here's what you might see in the terminal:
 
 1. **No Differences Found:**
-
    - Terminal Output: _<no output>_
    - This means the files are identical.
 
@@ -104,4 +98,3 @@ If you use the `diff` command as described in the README to compare the results,
 
 ```
 
-```
