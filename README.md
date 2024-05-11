@@ -96,6 +96,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 ## Contributor
 
 - **Lydia Ojoawo** - [GitHub Profile](https://github.com/Lydia02)
-```
 
-This README is comprehensive, providing a clear guide to using and understanding the Unique Integer Processor project, detailing the initial setup, how to use the application, and what to expect in terms of output.
+## Happy Coding 🎉
