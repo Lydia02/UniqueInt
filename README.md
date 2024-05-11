@@ -15,7 +15,7 @@
 
 ## Overview
 
-The Unique Integer Processor is a Node.js application that reads input files containing integers, identifies all unique integers, sorts them, and then writes the sorted list to new files. This utility includes built-in performance tracking and is efficient for processing large datasets.
+The Unique Integer Processor is a Javascript application that reads input files containing integers, identifies all unique integers, sorts them, and then writes the sorted list to new files. This utility includes built-in performance tracking and is efficient for processing large datasets.
 
 ## Features
 
