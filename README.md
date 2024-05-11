@@ -5,6 +5,7 @@
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Repository Structure](#repository-structure)
 - [Usage](#usage)
   - [Running the Application](#running-the-application)
   - [Comparing Output Files](#comparing-output-files)
@@ -37,6 +38,15 @@ Clone the repository:
 git clone https://github.com/Lydia02/UniqueInt.git
 cd UniqueInt
 ```
+
+## Repository Structure
+
+When you clone the repository, you'll find the following directories and files:
+- **`results_for_sample_inputs/`**: Contains predefined result files for comparison.
+- **`sample_input_for_students/`**: Contains sample input files to be processed.
+- **`sample_results/`**: This directory will be generated upon running the code and will contain the output files. If already present, it contains previous results.
+- **`performanceTracker.js`**: Script for tracking the execution time and memory usage.
+- **`uniqueInt.js`**: Main script that processes the input files to extract and sort unique integers.
 
 ## Usage
 
@@ -87,3 +97,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 
 - **Lydia Ojoawo** - [GitHub Profile](https://github.com/Lydia02)
 ```
+
+This README is comprehensive, providing a clear guide to using and understanding the Unique Integer Processor project, detailing the initial setup, how to use the application, and what to expect in terms of output.
