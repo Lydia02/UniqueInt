@@ -1,4 +1,4 @@
-```markdown
+
 # Unique Integer Processor
 
 ## Table of Contents
@@ -7,8 +7,8 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Comparing Output Files](#comparing-output-files)
-  - [Example Terminal Output for the `diff` Command](#example-terminal-output-for-the-diff-command)
+- [Comparing Output Files](#comparing-output-files)
+- [Example Terminal Output for the `diff` Command](#example-terminal-output-for-the-diff-command)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contributor](#contributor)
