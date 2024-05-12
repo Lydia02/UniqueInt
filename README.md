@@ -1,4 +1,3 @@
-```markdown
 # Unique Integer Processor
 
 ## Table of Contents
@@ -6,18 +5,18 @@
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Repository Structure](#repository-structure)
 - [Usage](#usage)
+  - [Running the Application](#running-the-application)
   - [Comparing Output Files](#comparing-output-files)
   - [Example Terminal Output for the `diff` Command](#example-terminal-output-for-the-diff-command)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contributor](#contributor)
 
-![Unique Integer Processor](path_to_image/unique_integer_processor_banner.jpg)
-
 ## Overview
 
-The Unique Integer Processor is a Node.js application that reads input files containing integers, identifies all unique integers, sorts them, and then writes the sorted list to new files. This utility includes built-in performance tracking and is efficient for processing large datasets.
+The Unique Integer Processor is a Javascript application that reads input files containing integers, identifies all unique integers, sorts them, and then writes the sorted list to new files. This utility includes built-in performance tracking and is efficient for processing large datasets.
 
 ## Features
 
@@ -40,9 +39,20 @@ git clone https://github.com/Lydia02/UniqueInt.git
 cd UniqueInt
 ```
 
+## Repository Structure
+
+When you clone the repository, you'll find the following directories and files:
+- **`results_for_sample_inputs/`**: Contains predefined result files for comparison.
+- **`sample_input_for_students/`**: Contains sample input files to be processed.
+- **`sample_results/`**: This directory will be generated upon running the code and will contain the output files. If already present, it contains previous results.
+- **`performanceTracker.js`**: Script for tracking the execution time and memory usage.
+- **`uniqueInt.js`**: Main script that processes the input files to extract and sort unique integers.
+
 ## Usage
 
-Run the application with the path to the input file:
+### Running the Application
+
+To run the application, navigate to the project directory in your terminal and execute the application by passing the path to the input file:
 
 ```bash
 node uniqueInt.js <path_to_input_file>
@@ -55,6 +65,15 @@ node uniqueInt.js sample_input_for_students/small_sample_input_04.txt
 ```
 
 This command processes the file, extracts and sorts unique integers, and saves them in the `sample_results` directory.
+
+When run, you will see performance metrics displayed in the terminal:
+
+```
+Lydia@DESKTOP-5TKSJNF MINGW64 ~/Desktop/ALU/uniqueInt (master)
+$ node uniqueInt.js sample_input_for_students/small_sample_input_04.txt
+Execution time: 5 ms
+Memory used: 45576 bytes
+```
 
 ### Comparing Output Files
 
@@ -74,27 +93,8 @@ Contributions are welcome. Please fork the repository, create a feature branch, 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
-### Example Terminal Output for the `diff` Command
-
-If you use the `diff` command as described in the README to compare the results, here's what you might see in the terminal:
-
-1. **No Differences Found:**
-   - Terminal Output: _<no output>_
-   - This means the files are identical.
-
-2. **Differences Found:**
-   - Terminal Output:
-     ```
-     3c3
-     < 12345
-     ---
-     > 12346
-     ```
-   - This output shows that on line 3, the expected file has "12345" while the generated file has "12346".
-
 ## Contributor
 
 - **Lydia Ojoawo** - [GitHub Profile](https://github.com/Lydia02)
 
-```
-
+## Happy Coding 🎉
