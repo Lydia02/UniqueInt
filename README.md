@@ -80,7 +80,7 @@ Memory used: 45576 bytes
 To compare the sorted integers in the output file against a predefined result file, use the `diff` command in the terminal:
 
 ```bash
-diff sample_results/small_sample_input_01.txt_results.txt results_for_sample_inputs/small_sample_input_01.txt_result.txt
+diff -b sample_results/small_sample_input_01.txt_results.txt results_for_sample_inputs/small_sample_input_01.txt_result.txt
 ```
 
 If there are no differences, the command will not output anything, indicating that the files are identical. If there are differences, `diff` will output the lines that do not match.

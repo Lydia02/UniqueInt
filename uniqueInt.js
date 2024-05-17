@@ -2,50 +2,44 @@ const fs = require("fs");
 const path = require("path");
 const { startTracking, endTracking } = require("./performanceTracker");
 
-// Initializes a collection object for storing unique integers
-function createCollection() {
-  return {};
-}
-
-// Adds a unique integer to the collection if it is not already present
-function addToCollection(collection, key, value) {
-  if (collection[key] === undefined) {
-    // Checks for uniqueness before adding
-    collection[key] = value;
+// Initializes a boolean object for tracking unique integers
+function createBooleanArray(size) {
+  let booleanArray = {};
+  for (let i = 0; i < size; i++) {
+    booleanArray[i] = false;
   }
+  return booleanArray;
 }
 
-// Converts the keys of the collection object into an array-like structure without using array methods
-function getKeys(collection) {
-  let result = {};
-  result.length = 0; // Maintains a custom 'length' property for tracking
+// Adds a unique integer to the boolean object
+function addToBooleanArray(booleanArray, num) {
+  booleanArray[num + 1023] = true; // Adjust index for negative values
+}
 
-  for (let key in collection) {
-    if (collection.hasOwnProperty(key)) {
-      result[result.length] = parseInt(key); // Stores keys as integer values in a custom structure
-      result.length++; // Increments length manually
+// Converts the boolean object into a sorted object of unique integers
+function getSortedUniqueIntegers(booleanArray) {
+  let result = {};
+  result.length = 0;
+
+  for (let i in booleanArray) {
+    if (booleanArray.hasOwnProperty(i) && booleanArray[i]) {
+      result[result.length] = parseInt(i, 10) - 1023;
+      result.length++;
     }
   }
 
-  // Manually converts the custom structure into an array for sorting
-  let arrayResult = [];
-  for (let i = 0; i < result.length; i++) {
-    arrayResult[i] = result[i];
-  }
-  return arrayResult;
-}
-
-// Sorts an array of integers using the insertion sort algorithm
-function sortKeys(keys) {
-  for (let i = 1; i < keys.length; i++) {
-    let key = keys[i];
+  // Custom implementation of sorting (insertion sort)
+  for (let i = 1; i < result.length; i++) {
+    let key = result[i];
     let j = i - 1;
-    while (j >= 0 && keys[j] > key) {
-      keys[j + 1] = keys[j]; // Shifts elements in the array to the right
+    while (j >= 0 && result[j] > key) {
+      result[j + 1] = result[j];
       j--;
     }
-    keys[j + 1] = key; // Inserts the key at the correct sorted position
+    result[j + 1] = key;
   }
+
+  return result;
 }
 
 // Main function to process the input file, sort the integers, and write them to a new file
@@ -69,23 +63,64 @@ function UniqueInt(inputFilePath) {
         return;
       }
 
-      const lines = data.split(/\r?\n/);
-      const uniqueNumbers = createCollection();
+      let lines = "";
+      for (let i = 0; i < data.length; i++) {
+        lines += data[i];
+      }
 
-      for (let line of lines) {
+      lines = lines.split("\n");
+
+      const booleanArray = createBooleanArray(2047); // Range from -1023 to 1023
+
+      for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+        let line = "";
+        for (let i = 0; i < lines[lineIndex].length; i++) {
+          line += lines[lineIndex][i];
+        }
+
         line = line.trim();
-        if (/^[-+]?[0-9]+$/.test(line)) {
-          const num = parseInt(line, 10);
-          if (Number.isSafeInteger(num)) {
-            addToCollection(uniqueNumbers, num, true);
+
+        if (line === "") {
+          continue; // Skip empty lines
+        }
+
+        let validNumber = true;
+        let num = 0;
+        let negative = false;
+        let startIndex = 0;
+
+        if (line[0] === '-') {
+          negative = true;
+          startIndex = 1;
+        } else if (line[0] === '+') {
+          startIndex = 1;
+        }
+
+        for (let i = startIndex; i < line.length; i++) {
+          if (line[i] < '0' || line[i] > '9') {
+            validNumber = false;
+            break;
+          }
+          num = num * 10 + (line.charCodeAt(i) - '0'.charCodeAt(0));
+        }
+
+        if (validNumber) {
+          if (negative) {
+            num = -num;
+          }
+          if (num >= -1023 && num <= 1023) {
+            addToBooleanArray(booleanArray, num);
           }
         }
       }
 
-      let sortedNumbers = getKeys(uniqueNumbers);
-      sortKeys(sortedNumbers); // Applies custom sorting to the array of numbers
-
-      let result = sortedNumbers.join("\n") + "\n";
+      let sortedNumbers = getSortedUniqueIntegers(booleanArray);
+      
+      // Create result string
+      let result = "";
+      for (let i = 0; i < sortedNumbers.length; i++) {
+        result += sortedNumbers[i] + "\n";
+      }
 
       fs.writeFile(outputFilePath, result, (err) => {
         if (err) {
@@ -98,11 +133,11 @@ function UniqueInt(inputFilePath) {
 }
 
 // Usage examples to sort integers from the sample files
-// UniqueInt("sample_input_for_students/sample_01.txt");
-// UniqueInt('sample_input_for_students/sample_02.txt');
-// UniqueInt("sample_input_for_students/sample_03.txt");
-// UniqueInt('sample_input_for_students/sample_04.txt');
-// UniqueInt('sample_input_for_students/small_sample_input_01.txt');
-// UniqueInt('sample_input_for_students/small_sample_input_02.txt');
-// UniqueInt('sample_input_for_students/small_sample_input_03.txt');
+UniqueInt("sample_input_for_students/sample_01.txt");
+UniqueInt("sample_input_for_students/sample_02.txt");
+UniqueInt("sample_input_for_students/sample_03.txt");
+UniqueInt("sample_input_for_students/sample_04.txt");
+UniqueInt("sample_input_for_students/small_sample_input_01.txt");
+UniqueInt("sample_input_for_students/small_sample_input_02.txt");
+UniqueInt("sample_input_for_students/small_sample_input_03.txt");
 UniqueInt("sample_input_for_students/small_sample_input_04.txt");
