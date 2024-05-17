@@ -132,12 +132,12 @@ function UniqueInt(inputFilePath) {
   });
 }
 
-// Usage examples to sort integers from the sample files
+// Usage  to sort integers from the sample files
 UniqueInt("sample_input_for_students/sample_01.txt");
-UniqueInt("sample_input_for_students/sample_02.txt");
-UniqueInt("sample_input_for_students/sample_03.txt");
-UniqueInt("sample_input_for_students/sample_04.txt");
-UniqueInt("sample_input_for_students/small_sample_input_01.txt");
-UniqueInt("sample_input_for_students/small_sample_input_02.txt");
-UniqueInt("sample_input_for_students/small_sample_input_03.txt");
-UniqueInt("sample_input_for_students/small_sample_input_04.txt");
+// UniqueInt("sample_input_for_students/sample_02.txt");
+// UniqueInt("sample_input_for_students/sample_03.txt");
+// UniqueInt("sample_input_for_students/sample_04.txt");
+// UniqueInt("sample_input_for_students/small_sample_input_01.txt");
+// UniqueInt("sample_input_for_students/small_sample_input_02.txt");
+// UniqueInt("sample_input_for_students/small_sample_input_03.txt");
+// UniqueInt("sample_input_for_students/small_sample_input_04.txt");
