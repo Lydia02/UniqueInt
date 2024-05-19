@@ -13,7 +13,7 @@ function createBooleanArray(size) {
 
 // Adds a unique integer to the boolean object
 function addToBooleanArray(booleanArray, num) {
-  booleanArray[num + 1023] = true; // Adjust index for negative values
+  booleanArray[num + 1023] = true;
 }
 
 // Converts the boolean object into a sorted object of unique integers
